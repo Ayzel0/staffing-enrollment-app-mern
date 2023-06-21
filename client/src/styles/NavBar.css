@@ -1,0 +1,33 @@
+.navbar {
+    height: 10vh;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.active-icon, 
+.inactive-icon {
+    border-radius: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1em;
+    color: black;
+    transition: all 0.2s ease;
+    border: none;
+    background: inherit;
+}
+
+.active-icon:hover {
+    background: rgb(140, 140, 140);
+}
+
+.inactive-icon:hover {
+    background: rgb(150, 150, 150);
+}
+
+.active-icon {
+    background: rgb(179, 179, 179);
+}

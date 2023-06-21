@@ -1,0 +1,27 @@
+@import "./GlobalStyles.css";
+
+.district {
+    background: var(--edunomics-gray);
+    color: black;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 1em;
+    transition: 0.3s all ease;
+}
+
+.district:hover {
+    filter: brightness(1.2);
+}
+
+.district:active {
+    filter: brightness(0.7);
+}
+
+.district-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    column-gap: 1em;
+    row-gap: 1em;
+    justify-content: center;
+}

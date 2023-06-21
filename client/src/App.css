@@ -1,0 +1,78 @@
+@import "./styles/GlobalStyles.css";
+
+.app {
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-wrapper {
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+  height: 90vh;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.panel-aligner {
+  display: flex;
+}
+
+.title-bar {
+  font-family: Verdana;
+  position: relative;
+  width: 100%;
+}
+
+.title-bar img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  top: 15%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); 
+  height: 70%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay h1 {
+  font-family: Verdana;
+  font-weight: 300;
+  font-size: 2.5em;
+  color: white;
+}
+
+.app-panel {
+  background: var(--edunomics-gray);
+  border-radius: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--dark-edunomics-gray);
+}
+
+.form-panel {
+  background: var(--dark-edunomics-gray);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s ease;
+}
+
+.graph-panel {
+  background: var(--edunomics-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s ease;
+}

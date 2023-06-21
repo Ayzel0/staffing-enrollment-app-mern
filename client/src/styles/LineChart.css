@@ -1,0 +1,39 @@
+@import "./GlobalStyles.css";
+
+.line-chart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 65vw;
+    margin: var(--large-padding) 0;
+}
+
+.no-data {
+    font-family: Verdana;
+}
+
+.no-data-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copy-button {
+    width: 10em;
+    background: var(--edunomics-green);
+    border: solid var(--darker-green) 3px;
+    border-radius: 2em;
+    margin: 10px 0;
+    color: white;
+    padding: 1em;
+    transition: all 0.3s ease;
+}
+
+.copy-button:hover {
+    filter: brightness(1.3);
+}
+
+.copy-button:active {
+    filter: brightness(0.5);
+}
