@@ -6,9 +6,6 @@ const dbName = process.env.DB_NAME;
 const dbClusterUrl = process.env.DB_CLUSTER_URL;
 const connStr = `mongodb+srv://${dbUsername}:${dbPassword}@${dbClusterUrl}/${dbName}?retryWrites=true&w=majority`
 
-// models
-const District = require('./district');
-
 mongoose.connect(connStr, {
   useNewUrlParser: true,
   useUnifiedTopology: true,

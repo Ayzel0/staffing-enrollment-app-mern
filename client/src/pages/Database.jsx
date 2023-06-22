@@ -114,16 +114,3 @@ const Database = () => {
 }
 
 export default Database;
-
-/*
-<h1>{districtName}</h1>
-            {Object.entries(districtData).map(([key, value], index) => {
-              return(
-                <div key={key}>
-                  <p>Enrollment: {value.enrollment}</p>
-                  <p>FTE: {value.FTE}</p>
-                </div>
-              )
-            })}
-            <button onClick={resetDistrictSelect}>Go Back</button>
-            */

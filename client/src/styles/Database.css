@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     padding: var(--large-padding) 0;
+    overflow-y: scroll;
 }
 
 .database-graph-panel {
