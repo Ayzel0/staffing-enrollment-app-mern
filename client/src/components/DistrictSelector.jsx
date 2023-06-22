@@ -23,28 +23,38 @@ const DistrictSelector = ({ onDistrictSelect }) => {
     const distName = district.districtName;
     const yearArr = district.years;
 
-    const districtObj = yearArr.reduce((result, year, index) => {
-      let enrollFTECombined = {
-        enrollment: enrollArr[index],
-        FTE: fteArr[index]
-      }
-      result[year] = enrollFTECombined;
-      return result;
-    }, {name: distName});
-    return districtObj;
+    try {
+      const districtObj = yearArr.reduce((result, year, index) => {
+        let enrollFTECombined = {
+          enrollment: enrollArr[index],
+          FTE: fteArr[index]
+        }
+        result[year] = enrollFTECombined;
+        return result;
+      }, {name: distName});
+      return districtObj;
+    } catch {
+      return {};
+    }
   }
 
   return (
     <div className='district-grid'>
       {districtData && districtData.map(district => {
         const districtObj = getDistrictData(district._id);
-        const years = Object.keys(districtObj).slice(1);
-        return (
-          <button key={district._id} className='district' onClick={() => onDistrictSelect(districtObj)}>
-            <h2>{districtObj.name}</h2>
-            <p>Data from {years[0]} to {years[years.length - 1]}</p>
-          </button>
-        )
+        if (Object.keys(districtObj).length > 0) {
+          const years = Object.keys(districtObj).slice(1);
+          return (
+            <button key={district._id} className='district' onClick={() => onDistrictSelect(districtObj)}>
+              <h2>{districtObj.name}</h2>
+              <p>Data from {years[0]} to {years[years.length - 1]}</p>
+            </button>
+          )
+        } else {
+          return (
+            <div key={district._id}></div>
+          )
+        }
       })}
     </div>
   )

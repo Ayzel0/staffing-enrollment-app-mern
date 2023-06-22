@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 app.use(cors({ origin: 'https://prismatic-daifuku-97fb97.netlify.app', }));
+// app.use(cors({ origin: 'http://localhost:5173', }));
 
 const port = process.env.PORT || 5000;
 const District = require('./district');
