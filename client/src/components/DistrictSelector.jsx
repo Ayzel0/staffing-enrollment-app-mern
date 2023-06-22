@@ -7,7 +7,7 @@ const DistrictSelector = ({ onDistrictSelect }) => {
   const [districtData, setDistrictData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/districts')
+    axios.get('https://edunomics-staffing-enrollment.onrender.com/api/districts')
       .then(response => {
         setDistrictData(response.data);
       })

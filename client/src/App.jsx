@@ -1,6 +1,6 @@
 import Chart from 'chart.js/auto';
 import { CategoryScale } from 'chart.js';
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import NavBar from './components/NavBar';
 import Database from './pages/Database';
 import ChartCreator from './pages/ChartCreator';
