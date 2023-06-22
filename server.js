@@ -1,7 +1,19 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-app.use(cors({ origin: 'http://localhost:5173' }));
+const allowedOrigins = ['http://localhost:5173', 'https://prismatic-daifuku-97fb97.netlify.app'];
+
+app.use(cors({
+  origin: (origin) => {
+    if(!origin) return true;
+    if(allowedOrigins.indexOf(origin) === -1){
+      var msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+      return Promise.reject(new Error(msg));
+    }
+    return Promise.resolve(true);
+  }
+}));
 
 const port = process.env.PORT || 5000;
 const District = require('./district');
