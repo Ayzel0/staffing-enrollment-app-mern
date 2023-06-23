@@ -5,11 +5,16 @@ import '../styles/DistrictSelector.css';
 
 const DistrictSelector = ({ onDistrictSelect }) => {
   const [districtData, setDistrictData] = useState([]);
+  const [states, setStates] = useState([]);
 
   useEffect(() => {
     axios.get('https://edunomics-staffing-enrollment.onrender.com/api/districts')
       .then(response => {
-        setDistrictData(response.data);
+        const distData = response.data
+        setDistrictData(distData);
+
+        const newStateNames = [...new Set(distData.map(district => district.state))];
+        setStates(newStateNames);
       })
       .catch(error => {
         console.error('error in retrieving data: ', error);
@@ -39,23 +44,44 @@ const DistrictSelector = ({ onDistrictSelect }) => {
   }
 
   return (
-    <div className='district-grid'>
-      {districtData && districtData.map(district => {
-        const districtObj = getDistrictData(district._id);
-        if (Object.keys(districtObj).length > 0) {
-          const years = Object.keys(districtObj).slice(1);
-          return (
-            <button key={district._id} className='district' onClick={() => onDistrictSelect(districtObj)}>
-              <h2>{districtObj.name}</h2>
-              <p>Data from {years[0]} to {years[years.length - 1]}</p>
-            </button>
-          )
-        } else {
-          return (
-            <div key={district._id}></div>
-          )
-        }
-      })}
+    <div>
+      {districtData.length != 0 
+      ? (
+      <>
+        <div className='state-buttons'>
+          <ul className='state-list'>
+            {states && states.map((state, index) => {
+              return (
+                <li key={index} className='state'>
+                  <p>{state}</p>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+        <div className='district-grid'>
+          {districtData && districtData.map(district => {
+            const districtObj = getDistrictData(district._id);
+            if (Object.keys(districtObj).length > 0) {
+              const years = Object.keys(districtObj).slice(1);
+              return (
+                <button key={district._id} className='district' onClick={() => onDistrictSelect(districtObj)}>
+                  <h2>{districtObj.name}</h2>
+                  <p>Data from {years[0]} to {years[years.length - 1]}</p>
+                </button>
+              )
+            }
+          })}
+        </div>
+      </>
+      )
+      : (
+        <div className='loading-screen'>
+          <h1>Loading</h1>
+          <div className='spinner'></div>
+        </div>
+      )
+      }
     </div>
   )
 }
