@@ -9,6 +9,7 @@ const District = require('./district');
 require('dotenv').config();
 require('./db.js');
 
+// get data
 app.get('/api/districts', (req, res) => {
   District.find({})
     .then(districts => {
