@@ -51,6 +51,27 @@
     padding: 0;
 }
 
+.search-box {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.search-box input {
+    padding: 10px;
+    border: none;
+    font-size: 1em;
+}
+
+.search-box button {
+    border: none;
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
 .loading-screen {
     position: absolute;
     top: 50%;

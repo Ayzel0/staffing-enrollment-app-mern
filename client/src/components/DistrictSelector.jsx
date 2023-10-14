@@ -5,21 +5,20 @@ import '../styles/DistrictSelector.css';
 
 const DistrictSelector = ({ onDistrictSelect }) => {
   const [districtData, setDistrictData] = useState([]);
-  const [states, setStates] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  useEffect(() => {
-    axios.get('https://edunomics-staffing-enrollment.onrender.com/api/districts')
-      .then(response => {
-        const distData = response.data
-        setDistrictData(distData);
-
-        const newStateNames = [...new Set(distData.map(district => district.state))];
-        setStates(newStateNames);
-      })
-      .catch(error => {
-        console.error('error in retrieving data: ', error);
-      })
-  }, [])
+  const handleSearch = () => {
+    if (searchQuery.trim() !== '') {
+      axios.get(`https://edunomics-staffing-enrollment.onrender.com/api/search/districts?name=${searchQuery}`)
+      // axios.get(`http://localhost:5000/api/search/districts?name=${searchQuery}`)
+        .then(response => {
+          setDistrictData(response.data);
+        })
+        .catch(error => {
+          console.error('error in retrieving data: ', error);
+        });
+    }
+  };
 
   const getDistrictData = (id) => {
     const district = districtData.find(district => district._id === id);
@@ -48,16 +47,15 @@ const DistrictSelector = ({ onDistrictSelect }) => {
       {districtData.length != 0 
       ? (
       <>
-        <div className='state-buttons'>
-          <ul className='state-list'>
-            {states && states.map((state, index) => {
-              return (
-                <li key={index} className='state'>
-                  <p>{state}</p>
-                </li>
-              )
-            })}
-          </ul>
+        <div className='search-box'>
+          <input 
+            className='search-input'
+            type='text' 
+            placeholder='Search for district...'
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button onClick={handleSearch}>Search</button>
         </div>
         <div className='district-grid'>
           {districtData && districtData.map(district => {
@@ -76,9 +74,14 @@ const DistrictSelector = ({ onDistrictSelect }) => {
       </>
       )
       : (
-        <div className='loading-screen'>
-          <h1>Loading</h1>
-          <div className='spinner'></div>
+        <div className='search-box'>
+          <input 
+            type='text' 
+            placeholder='Search for district...'
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button onClick={handleSearch}>Search</button>
         </div>
       )
       }
